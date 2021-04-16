@@ -1,290 +1,126 @@
-@if (session()->get('id')!=null)
-
-
-@else
-<script>
-window.location.replace('Logica/error.php');
-</script>
-
-@endif
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <title>Turnero V 2.0</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SISTEMA DE TURNOS</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="{{asset('recursos/vendor/bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('recursos/css/bootstrap.css')}}">
-
-    
-
-
-    <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="{{asset('recursos/vendor/font-awesome/css/font-awesome.min.css')}}">
-    <!-- Fontastic Custom icon font-->
-    <link rel="stylesheet" href="{{asset('recursos/css/fontastic.css')}}">
-        <!-- Google fonts - Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
-    <!-- jQuery Circle-->
-    <link rel="stylesheet" href="{{asset('recursos/css/grasp_mobile_progress_circle-1.0.0.min.css')}}">
-    <!-- Custom Scrollbar-->
-    <link rel="stylesheet" href="{{asset('recursos/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css')}}">
-    <!-- theme stylesheet-->
-       <!-- Alertas modal-->
-       <link rel="stylesheet" href="{{asset('recursos/css/sweetalert.css')}}">
-   
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="{{asset('recursos/css/custom.css')}}">
-
-    <link rel="stylesheet" href="{{asset('recursos/css/tablas.css')}}">
-
-   <link rel="stylesheet" href="{{asset('recursos/css/style.default.css')}}">
-
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('recursos/dist/css/AdminLTE.min.css')}}">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{asset('recursos/dist/css/skins/_all-skins.min.css')}}">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="{{asset('recursos/img/itsco.jpg')}}">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+     <!--datables estilo bootstrap 4 CSS-->  
+     <link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
   </head>
-  <body>
-    <!-- Side Navbar -->
-    <nav class="side-navbar menu">
-      <div class="side-navbar-wrapper">
-        <!-- Sidebar Header    -->
-        <div class="sidenav-header d-flex align-items-center justify-content-center">
-          <!--Info Usuario-->
-          <div class="sidenav-header-inner text-center"><h2 class="h5"> 
-          <?php
-
-
-
-$nombre="";
-$rol="";
-$id="";
-
-$sesion=session()->has('id');
-
-if(!$sesion){
-  
-  header('Location: Logica/error.php');
-}else{
-  
-  $nombre=session()->get('nombre');
-  $rol=session()->get('rol');
-  $id=session()->get('id');
-
-}
-
-echo $nombre;
-?>
-
-
-</h2><h3>
-  @if (session()->get('id')!=null)
-
- {{ session()->get('rol') }}
- 
- @endif
-</h3>
-          </div>
-          <!-- Small Brand information, appears on minimized sidebar-->
-          <div class="sidenav-headers-logo"><a href="index.html" class="brand-small text-center"> 
-            <strong></strong><strong class="text-primary">pa</strong></a></div>
-        </div>
-
-
-
-
-        <!-- Menu-->
-       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">Menú <?php  
-        
-          
-          echo  $rol;
-        
-       
-            ?></li>
-       
-
- <li class="treeview">
- <?php  if($rol=="Administrador")
- {
-   
-   ?>
-          <a href="#">
-            <i class="fa fa-edit"></i> <span> <font size="2">SEGURIDAD</font></span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-<?php
-}
-?>
-          <ul class="treeview-menu">
-          <li><a href="{{url('/usuario/')}}"> <i class="icon icon-user"></i>Usuarios</a></li>
-                
-                </ul>
-        </li>
-        <li class="treeview">
-        <?php  if($rol=="Administrador")
- {
-   
-   ?>
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>  <font size="2">MANTENIMIENTO</font></span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <?php
-}
-?>
-          <ul class="treeview-menu">
-          <li><a href="{{ url('/genero/') }}"><i class=" user-shield"></i>Géneros</a></li>
-          <li><a href="{{ url('/modulo/') }}"><i class=" user-shield"></i>Módulos</a></li>     
-          <li><a href="{{ url('/persona/') }}"><i class=" user-shield"></i>Personas</a></li> 
-          <li><a href="{{ url('/matricula/') }}"><i class=" user-shield"></i>Matrículas</a></li> 
-          <li><a href="{{ url('/periodo/') }}"><i class=" user-shield"></i>Períodos</a></li> 
-          <li><a href="{{ url('/periodomatricula/') }}"><i class=" user-shield"></i>Períodos-Matrículas</a></li> 
-
-                </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>  <font size="2">TURNOS</font></span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-          
-          <li><a href="{{ url('principal') }}"><i class=" user-shield" ></i>Panel de control</a></li> 
-                </ul>
-        </li>
-        <li class="treeview">
-        <?php  if($rol=="Administrador")
- {
-   
-   ?>
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>  <font size="2">REPORTES</font></span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <?php
-}
-?>
-          <ul class="treeview-menu">
-          <li><a href="{{ url('/reporte') }}"><i class=" user-shield"></i>Turnos</a></li> 
-                </ul>
-        </li>
- </ul>
- </div>
-  </nav>
-   
-
-  
-   <div class="page">
-      <!-- navbar-->
-      <header class="header">
-        <nav class="navbar">
-          <div class="container-fluid">
-            <div class="navbar-holder d-flex align-items-center justify-content-between">
-              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class=""> </i></a><a href="index.html" class="navbar-brand">
-                  <div class="brand-text d-none d-md-inline-block"><span> </span><strong class="text-danger"></strong></div></a></div>
-              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-
-                <!-- Salir-->
-                <li class="nav-item"><a href="{{url('logout')}}" class="nav-link logout"> <span class="d-none d-sm-inline-block">Salir</span><i class="fa fa-sign-out"></i></a></li>
-              </ul>
+  <body class="app sidebar-mini">
+    <!-- Navbar-->
+    <header class="app-header"><a class="app-header__logo" href="gesti">Turnero V 2.0</a>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+      
+        <!--Notification Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-star-o fa-lg"></i></a>
+          <ul class="app-notification dropdown-menu dropdown-menu-right">
+            <li class="app-notification__title">Notificaciones.</li>
+            <div class="app-notification__content">
+              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+                  <div>
+                    <p class="app-notification__message">Lisa sent you a mail</p>
+                    <p class="app-notification__meta">2 min ago</p>
+                  </div></a></li>
+              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
+                  <div>
+                    <p class="app-notification__message">Mail server not working</p>
+                    <p class="app-notification__meta">5 min ago</p>
+                  </div></a></li>
+              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
+                  <div>
+                    <p class="app-notification__message">Transaction complete</p>
+                    <p class="app-notification__meta">2 days ago</p>
+                  </div></a></li>
+              <div class="app-notification__content">
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+                    <div>
+                      <p class="app-notification__message">Lisa sent you a mail</p>
+                      <p class="app-notification__meta">2 min ago</p>
+                    </div></a></li>
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
+                    <div>
+                      <p class="app-notification__message">Mail server not working</p>
+                      <p class="app-notification__meta">5 min ago</p>
+                    </div></a></li>
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
+                    <div>
+                      <p class="app-notification__message">Transaction complete</p>
+                      <p class="app-notification__meta">2 days ago</p>
+                    </div></a></li>
+              </div>
             </div>
-          </div>
-        </nav>
-      </header>
-
-      <div class="container-fluid">
-    <!-- Content Header (Page header) -->
-    
-<div class="contenido">
-@yield('content')
-
-</div>
-    <!-- Main content -->
-   
-      <!-- /.box -->
-
-    
-    <!-- /.content -->
-  </div>
+            <li class="app-notification__footer">Sistema Turnero Web.</li>
+          </ul>
+        </li>
+        <!-- User Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+          <ul class="dropdown-menu settings-menu dropdown-menu-right">
+           
+            <li><a class="dropdown-item" href="#"><i class="fa fa-user fa-lg"></i> Perfil</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fa fa-sign-out fa-lg"></i>Bloquear</a></li>
+            <li><a class="dropdown-item" href="{{url('logout')}}"><i class="fa fa-sign-out fa-lg"></i>Salir</a></li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="images/logo.png" alt="User Image" width="64">
+        <div>
+          <p class="app-sidebar__user-name">Jefferson G</p>
+          <p class="app-sidebar__user-designation">Administrador</p>
+        </div>
+      </div>
+      <ul class="app-menu">
+        <li><a class="app-menu__item " href="gesti"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Administración</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Colaboradores</a></li>
+            <li><a class="treeview-item" href=""><i class="icon fa fa-circle-o"></i> Usuarios</a></li>
+           
+            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Empresa</a></li>
+          </ul>
+        </li>
+       
       
+        <li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Acerca de</span></a></li>
+      </ul>
+    </aside>
+    <main class="app-content">
+    @yield('content')
+    </main>
+    <!-- Essential javascripts for application to work-->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="js/plugins/pace.min.js"></script>
+    <!-- Page specific javascripts-->
+    <script type="text/javascript" src="js/plugins/chart.js"></script>
 
+    <!-- Data table plugin-->
+
+    <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
+      <!-- para usar botones en datatables JS -->  
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
      
-      
-    </div>
-    <!-- JavaScript files-->
-
-
-<script src="{{asset('recursos/js/validarcedula.js')}}"></script>
-
-    <script  src="{{asset('recursos/bower_components/jquery/dist/jquery.min.js')}}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script  src="{{asset('recursos/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-<!-- FastClick -->
-<script  src="{{asset('recursos/bower_components/fastclick/lib/fastclick.js')}}"></script>
-<!-- AdminLTE App -->
-<script  src="{{asset('recursos/dist/js/adminlte.min.js')}}"></script>
-<!-- Sparkline -->
-<script  src="{{asset('recursos/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js')}}"></script>
-<!-- jvectormap  -->
-<script  src="{{asset('recursos/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
-<script  src="{{asset('recursos/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
-<!-- SlimScroll -->
-<!-- ChartJS -->
-<script  src="{{asset('recursos/bower_components/chart.js/Chart.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script  src="{{asset('recursos/dist/js/pages/dashboard2.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script  src="{{asset('recursos/dist/js/demo.js')}}"></script>
-    <script src="{{asset('recursos/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('recursos/vendor/popper.js/umd/popper.min.js')}}"> </script>
-    <script src="{{asset('recursos/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('recursos/js/grasp_mobile_progress_circle-1.0.0.min.js')}}"></script>
-    <script src="{{asset('recursos/vendor/jquery.cookie/jquery.cookie.js')}}"> </script>
-    <script src="{{asset('recursos/vendor/chart.js/Chart.min.js')}}"></script>
-    <script src="{{asset('recursos/vendor/jquery-validation/jquery.validate.min.js')}}"></script>
-    <script src="{{asset('recursos/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-    <script src="{{asset('recursos/js/charts-home.js')}}"></script>
-    <!-- Main File-->
-    <script src="{{asset('recursos/js/main.js')}}"></script>
-    <script src="{{asset('recursos/js/BuscadorTabla.js')}}"></script>
     
-    <script src="{{asset('recursos/js/imprimir.js')}}"></script>
-<!-- alerta modal -->
-    <script src="{{asset('recursos/js/sweetalert.min.js')}}"></script>
-    
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-  
+   
   </body>
 </html>
