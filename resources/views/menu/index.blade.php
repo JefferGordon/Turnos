@@ -84,14 +84,26 @@
         <li><a class="app-menu__item " href="gesti"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Administración</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Colaboradores</a></li>
-            <li><a class="treeview-item" href=""><i class="icon fa fa-circle-o"></i> Usuarios</a></li>
-           
             <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Empresa</a></li>
+           
           </ul>
         </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Seguridad</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Usuarios</a></li>
+           
+          </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Turnos</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Módulos/Cajas</a></li>
+            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Opción turno</a></li>
+           
+           
+          </ul>
+        </li>
+        <li><a class="app-menu__item " href="gesti"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Control Turnos</span></a></li>
        
-      
         <li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Acerca de</span></a></li>
       </ul>
     </aside>
