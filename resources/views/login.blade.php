@@ -16,11 +16,11 @@
     </section>
     <section class="login-content">
 
- @if ($message = Session::get('success'))
+ @if ($message = Session::get('error'))
         <div class="alert alert-danger" role="alert">
             <p>{{ $message }}</p>
         </div>
-    @endif
+ @endif
     @if ($errors->any())
     <div class="alert alert-danger">
         <strong>Advertencia!</strong> Corrija los siguientes errores:<br><br>
@@ -30,18 +30,18 @@
             @endforeach
         </ul>
     </div>
-@endif
+    @endif
 
       <div class="login-box">
         <form class="login-form" action="{{ route('login.store') }} " method="post">
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Ingresar al Sistema</h3>
           <div class="form-group">
             <label class="control-label">Usuario</label>
-            <input class="form-control" type="text" placeholder="User" name="txtuser" autofocus>
+            <input class="form-control" type="text" placeholder="User" name="usuario" autofocus>
           </div>
           <div class="form-group">
             <label class="control-label">Contraseña</label>
-            <input class="form-control" type="password"  name="txtpass" placeholder="Contraseña" value="{{old('txtpass')}}" value="{{old('txtuser')}}">
+            <input class="form-control" type="password"  name="clave" placeholder="Contraseña" value="{{old('txtpass')}}" value="{{old('txtuser')}}">
           </div>
           <div class="form-group">
            

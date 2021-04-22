@@ -1,3 +1,19 @@
+<?php
+$sesion=session()->has('id');
+
+if(!$sesion){
+  
+  header('Location: Logica/error.php');
+}else{
+  
+  $nombre=session()->get('nombre');
+  $rol=session()->get('rol');
+  $id=session()->get('idpersona');
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,14 +22,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      <!--datables estilo bootstrap 4 CSS-->  
-     <link rel="stylesheet"  type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+     <link rel="stylesheet"  type="text/css" href="{{asset('datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css')}}">
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
+
+
+
     <header class="app-header"><a class="app-header__logo" href="gesti">Turnero V 2.0</a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
@@ -76,8 +95,8 @@
     <aside class="app-sidebar">
       <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="images/logo.png" alt="User Image" width="64">
         <div>
-          <p class="app-sidebar__user-name">Jefferson G</p>
-          <p class="app-sidebar__user-designation">Administrador</p>
+          <p class="app-sidebar__user-name"><?= $nombre ?></p>
+          <p class="app-sidebar__user-designation"><?= $rol ?></p>
         </div>
       </div>
       <ul class="app-menu">
@@ -99,7 +118,6 @@
             <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Módulos/Cajas</a></li>
             <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Opción turno</a></li>
            
-           
           </ul>
         </li>
         <li><a class="app-menu__item " href="gesti"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Control Turnos</span></a></li>
@@ -111,19 +129,19 @@
     @yield('content')
     </main>
     <!-- Essential javascripts for application to work-->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('js/popper.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/main.js')}}"></script>
     <!-- The javascript plugin to display page loading on top-->
-    <script src="js/plugins/pace.min.js"></script>
+    <script src="{{asset('js/plugins/pace.min.js')}}"></script>
     <!-- Page specific javascripts-->
-    <script type="text/javascript" src="js/plugins/chart.js"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/chart.js')}}"></script>
 
     <!-- Data table plugin-->
 
-    <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/dataTables.bootstrap.min.js')}}"></script>
       <!-- para usar botones en datatables JS -->  
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>    

@@ -9,9 +9,9 @@ class Usuario extends Model
     //
    
 
-    protected $table = 'tbl_usuarios';
-    protected $primaryKey = 'USU_ID';
+    protected $table = 'tbl_personas';
+    protected $primaryKey = 'PER_ID';
     public $timestamps = false;
-    protected $fillable = ['txtuser', 'txtpass'];
+    protected $fillable = ['usuario', 'clave'];
   
 }

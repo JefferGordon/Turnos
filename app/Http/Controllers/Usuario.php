@@ -20,42 +20,45 @@ class Usuario extends Controller
     {
         //
         $request->validate([
-            'txtuser' => 'required',
-            'txtpass' => 'required',
+            'usuario' => 'required',
+            'clave' => 'required',
         ]);
-        $users= DB::select('call proc_usuarios(?,?)',array($request->txtuser,$request->txtpass));
+        $users= DB::select('call proc_usuarios(?,?)',array($request->usuario,$request->clave));
 
-        $usuario = $_POST['txtuser'];
-        $pass = $_POST['txtpass'];
-        $login=null;
-        $clave=null;
+        $empresa=null;
+        $usuario=null;
         $nombre=null;
         $rol=null;
-        $idper=null;
-        foreach ($users as $user) {
-          $login= $user->USU_LOGIN;
-          $clave= $user->USU_PASSWORD;
-          $nombre= $user->PER_NOMBRES;
-          $rol= $user->USU_ROL;
-          $idper=$user->PER_ID;
-        }
-        if($usuario=$login && $pass=$clave)
+        $idpersona=null;
+        $idmodulo=null;
+        $comercial=null;
 
-        {
+        if($users != null){
 
-            Session()->put('id',$idper);
+            foreach ($users as $user) {
+                $idpersona= $user->PER_ID;
+                $usuario= $user->PER_USUARIO;
+                $nombre= $user->nombre;
+                $rol= $user->PER_ROL;
+                $empresa=$user->PER_EMPRESA;
+                $idmodulo=$user->MOD_ID;
+                $comercial=$user->EMP_COMERCIAL;
+              }
+            Session()->put('id',$idpersona);
             Session()->put('nombre',$nombre);
             Session()->put('rol',$rol);
-           
-            
-            return view('menu.index', ['usuario' => $users]);
-        }
-        else {
-         
+            Session()->put('empresa',$empresa);
+            Session()->put('modulo',$idmodulo);
+            Session()->put('comercial',$comercial);
+
+            return view('welcome', ['usuario' => $users]);
+        }else{
             return redirect()->route('login.index')
-            ->with('success','Usuario no registrado');
+            ->with('error','Usuario no registrado');
         }
 
+       
+        
 
        
     }
