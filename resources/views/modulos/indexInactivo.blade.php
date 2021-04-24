@@ -7,7 +7,7 @@
       <p>sistema de Turnos Versión 2.0</p>
     </div>
       <ul class="app-breadcrumb breadcrumb">
-          <li class="breadcrumb-item"><i class="fa fa-home fa-lg">Lista Módulo</i></li>
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg">Lista Módulos Inactivos</i></li>
           <li class="breadcrumb-item"><a href="#">Principal</a></li>
       </ul>
 </div>
@@ -52,13 +52,11 @@
           </div>
     
 @endif
-              <h2>Lista Módulos /Cajas </h2>
+              <h2>Lista Módulos /Cajas Inactivos </h2>
           
-          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-          <i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar
-</button>
-<button type="button" class="btn btn-default" >
-<a href="{{ route('moduloInac.inactivo') }}"><i class="fa fa-recycle" aria-hidden="true" title="Inactivos"></i></a>
+        
+              <button type="button" class="btn btn-outline-info" >
+<a href="{{url('/modulo/')}}"><i class="fa fa-check-square-o" aria-hidden="true"></i> Lista</a>
 </button>
 
           <br> <br>
@@ -101,43 +99,4 @@
 
   
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"> Agregar Módulo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       
-      <form action="{{route('modulo.store')}}" method="post">
-    
-<div class="form-row">
-      <div class="form-group col-md-6">
-      <label class="control-label">Descripción </label>
-    <input class="form-control" type="text" placeholder="Ingrese descripcón módulo" name="descripcion" >
-      </div>
-      <div class="form-group col-md-6">
-      <label class="control-label">Identificador</label>
-    <input class="form-control" type="number" value="1"
-    
-    name="identificador"
-   min="1" >
-      </div>
-</div>
-<input class="form-control" type="text"  name="idempresa" value="<?=session()->get('empresa');?>" hidden >
-<div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Cerrar</button>
-        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-      </div>
-</form>
-
-      </div>
-     
-    </div>
-  </div>
-</div>
 @endsection

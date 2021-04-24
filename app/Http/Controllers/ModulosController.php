@@ -6,11 +6,13 @@ use App\Modulo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\TryCatch;
-use App\Http\Requests\Valcreatemodulo;
-use App\Http\Requests\Valupdatemodulo;
+use Illuminate\Validation\Rule;
+
 class ModulosController extends Controller
 {
     /**
+     * 
+     * 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -18,9 +20,16 @@ class ModulosController extends Controller
     public function index()
     {
         //
-        $mod= DB::select('call proc_listamodulos');
-
-        return view('modulos.index', ['modulo' => $mod]);
+       // $mod= DB::select('call proc_listamodulos');
+        $modulo= Modulo::where("MOD_ESTADO","=","A")->paginate(5);
+        return view('modulos.index', ['modulo' => $modulo]);
+    }
+    public function inactivo()
+    {
+        //
+       // $mod= DB::select('call proc_listamodulos');
+        $modulo= Modulo::where("MOD_ESTADO","=","I")->paginate(5);
+        return view('modulos.indexInactivo', ['modulo' => $modulo]);
     }
 
     /**
@@ -40,21 +49,24 @@ class ModulosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Valcreatemodulo $request)
+    public function store(Request $request)
     {
-        //
-        DB::table('tbl_modulos')->insert(
-            ['MOD_NUMERO' => $request->txtnum,
-            'MOD_DESCRIPCION'=> $request->txtdesc,
-            'MOD_ADD'=>$request->txtfecha,
-            'MOD_ESTADO'=>$request->txtestado
-           
+        $request->validate([
+            'identificador' => 'required|unique:tbl_modulos,mod_numero',
+            'descripcion'=> 'required'
+        ]);
+        $modulo = new Modulo([
 
-            ]
-        );
+            'MOD_DESCRIPCION'=> $request->post('descripcion'),
+            'MOD_NUMERO'=> $request->post('identificador'),
+            'MOD_EMPRESA'=> $request->post('idempresa')
+        ]);
+        if($modulo->save()){
+            return redirect()->route('modulo.index')->with('success','Datos guardados con éxito');
+        }else{
+            return redirect()->route('modulo.index')->with('error','Los datos no se guardaron');
+        }
 
-        return redirect()->route('modulo.index')->with('success','Módulo guardado con éxito');
-   
     }
 
     /**
@@ -79,7 +91,7 @@ class ModulosController extends Controller
      */
     public function edit(Modulo $modulo)
     {
-        return view('modulos.edit',compact('modulo'));
+        return view('modulos.detalle',compact('modulo'));
 
     }
 
@@ -90,15 +102,30 @@ class ModulosController extends Controller
      * @param  \App\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function update(Valupdatemodulo $request, Modulo $modulo)
+    public function update(Request $request,$id)
     {
-           
-     $id=$request->txtid;
-     
-     DB::table('tbl_modulos') ->where('MOD_ID', $id) ->update(['MOD_NUMERO' =>$request->txtnum,'MOD_DESCRIPCION' =>$request->txtdes,'MOD_ESTADO' =>$request->cbxestado]);
- 
-     return redirect()->route('modulo.index')->with('success','Módulo actualizado con éxito');
- 
+       
+        if($request->post('estado') == "A"){
+            $estado='A';
+        }else{
+            $estado='I';
+        }
+        $request->validate([
+            'identificador' => 'required|unique:tbl_modulos,MOD_NUMERO,'.$id.',MOD_ID',
+            'descripcion'=> 'required'
+        ]);
+        $modulo = Modulo::find($id);
+        $modulo->MOD_NUMERO=$request->post('identificador');
+        $modulo->MOD_DESCRIPCION=$request->post('descripcion');
+        $modulo->MOD_ESTADO=$estado;
+        if($modulo->save())
+        {
+            return redirect()->route('modulo.index')->with('success','Módulo actualizado con éxito');
+        }else
+        {
+            return redirect()->route('modulo.index')->with('error','No se modificaron los datos');
+        }
+
     }
 
     /**
@@ -107,22 +134,25 @@ class ModulosController extends Controller
      * @param  \App\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Modulo $modulo)
+    public function destroy($id)
     {
-        //
+      
+
+        $modulo = Modulo::find($id);
+
 
         try {
             if($modulo->delete())  {
                 return redirect()->route('modulo.index')
-        ->with('delete','módulo eliminado con éxito.');
+        ->with('success','módulo eliminado con éxito.');
             }else{
                 return redirect()->route('modulo.index')
-        ->with('delete','No se pudo eliminar el modulo.');
+        ->with('error','No se pudo eliminar el modulo.');
             }
         } catch (\Throwable $th) {
             
         return redirect()->route('modulo.index')
-        ->with('delete','No se pudo completar la accion.');
+        ->with('error','No se pudo completar la accion.');
     }
     }
 }

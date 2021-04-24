@@ -32,6 +32,7 @@
     </div>
     @endif
 
+    
       <div class="login-box">
         <form class="login-form" action="{{ route('login.store') }} " method="post">
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Ingresar al Sistema</h3>

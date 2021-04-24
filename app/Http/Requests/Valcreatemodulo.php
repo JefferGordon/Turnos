@@ -25,15 +25,16 @@ class Valcreatemodulo extends FormRequest
     {
         return [
             //
-            'txtnum' => 'required|unique:tbl_modulos,mod_numero',
-            'txtdesc'=> 'required|unique:tbl_modulos,mod_descripcion'
+            'indentificador' => 'required|unique:tbl_modulos,mod_numero',
+            'descripcion'=> 'required'
         ];
     }
     public function messages()
     {
         return [
-            'txtnum.required' => 'El campo Número no puede estar vacio',
-            'txtdesc.required' => 'El campo Descripción no puede estar vacio' 
+            'indentificador.required' => 'El campo Identificador debe ser unico',
+            'indentificador.unique' => 'El campo Identificador debe ser unico',
+            'descripcion.required' => 'El campo Descripción no puede estar vacio' 
      
         ];
     }

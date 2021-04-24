@@ -47,14 +47,14 @@ Route::view('/turnos', 'controlusuario');
 Route::view('/vistaturnos2', 'turnos/vistaturnos2');
 Route::resource('usuario','UsuarioController');
 Route::resource('modulo','ModulosController');
-Route::resource('genero','GeneroController');
-Route::resource('matricula','MatriculasController');
+Route::resource('servicio','ServiciosController');
 Route::resource('persona','PersonasController');
-Route::resource('rol','RolController');
 Route::resource('login','Usuario');
 Route::resource('logout','UsuarioSalir');
-Route::resource('periodo','PeriodosController');
 Route::resource('periodomatricula','PeriodosmatriculasController');
+Route::resource('empresa', 'EmpresaController');
+
+
 Route::view('/vista', 'turnos/vistaturnos');
 
 Route::view('/principal', 'turnos/principal');
@@ -63,3 +63,9 @@ Route::view('/principal2', 'turnos/principal2');
 Route::get('show', function () {
     return view('usuarios/show');
 });
+//Route::get('modulo', 'ModulosController@inactivo');
+// agregar nombre
+Route::get('moduloInac', 'ModulosController@inactivo')
+         ->name('moduloInac.inactivo');
+Route::get('servicioInac', 'ServiciosController@inactivo')
+         ->name('servicioInac.inactivo');

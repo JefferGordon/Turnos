@@ -26,7 +26,7 @@ if(!$sesion){
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      <!--datables estilo bootstrap 4 CSS-->  
-     <link rel="stylesheet"  type="text/css" href="{{asset('datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css')}}">
+
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
@@ -93,7 +93,7 @@ if(!$sesion){
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="images/logo.png" alt="User Image" width="64">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="/images/logo.png" alt="User Image" width="64">
         <div>
           <p class="app-sidebar__user-name"><?= $nombre ?></p>
           <p class="app-sidebar__user-designation"><?= $rol ?></p>
@@ -103,7 +103,7 @@ if(!$sesion){
         <li><a class="app-menu__item " href="gesti"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Administración</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Empresa</a></li>
+            <li><a class="treeview-item" href="{{url('/empresa/')}}"><i class="icon fa fa-circle-o"></i> Empresa</a></li>
            
           </ul>
         </li>
@@ -115,8 +115,8 @@ if(!$sesion){
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Turnos</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Módulos/Cajas</a></li>
-            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Opción turno</a></li>
+            <li><a class="treeview-item" href="{{url('/modulo/')}}"><i class="icon fa fa-circle-o"></i> Módulos/Cajas</a></li>
+            <li><a class="treeview-item" href="{{url('/servicio/')}}"><i class="icon fa fa-circle-o"></i> Servicios</a></li>
            
           </ul>
         </li>
@@ -142,13 +142,10 @@ if(!$sesion){
 
     <script type="text/javascript" src="{{asset('js/plugins/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/plugins/dataTables.bootstrap.min.js')}}"></script>
-      <!-- para usar botones en datatables JS -->  
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+
+  
+
+      
      
     
    

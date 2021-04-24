@@ -7,7 +7,7 @@
       <p>sistema de Turnos Versión 2.0</p>
     </div>
       <ul class="app-breadcrumb breadcrumb">
-          <li class="breadcrumb-item"><i class="fa fa-home fa-lg">Lista Módulo</i></li>
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg">Lista Servicios</i></li>
           <li class="breadcrumb-item"><a href="#">Principal</a></li>
       </ul>
 </div>
@@ -52,13 +52,13 @@
           </div>
     
 @endif
-              <h2>Lista Módulos /Cajas </h2>
+              <h2>Lista Servicios </h2>
           
           <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
           <i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar
 </button>
 <button type="button" class="btn btn-default" >
-<a href="{{ route('moduloInac.inactivo') }}"><i class="fa fa-recycle" aria-hidden="true" title="Inactivos"></i></a>
+<a href="{{ route('servicioInac.inactivo') }}"><i class="fa fa-recycle" aria-hidden="true" title="Inactivos"></i></a>
 </button>
 
           <br> <br>
@@ -70,19 +70,24 @@
                     <tr>
                       <th>ID</th>
                       <th>DESCRIPCIÓN</th>
-                      <th>IDENTIFICADOR MÓDULO</th>
+                      <th>IDENTIFICADOR SERVICIO</th>
+                      <th>HORA INICIO</th>
+                      <th>HORA FINALIZA</th>
+                   
                       <th></th>
                      
                     </tr>
                   </thead>
                   <tbody>
-                      @foreach($modulo as $mod)
+                      @foreach($servicio as $serv)
                     <tr>
-                      <td>{{$mod->MOD_ID}}</td>
-                      <td>{{$mod->MOD_DESCRIPCION}}</td>
-                      <td>{{$mod->MOD_NUMERO}}</td>
+                      <td>{{$serv->SER_ID}}</td>
+                      <td>{{$serv->SER_DESCRIPCION}}</td>
+                      <td>{{$serv->SER_IDENTIFICADOR}}</td>
+                      <td>{{$serv->SER_HORAA}}</td>
+                      <td>{{$serv->SER_HORAF}}</td>
                       <td>
-                      <a class="" href="{{ route('modulo.edit',$mod->MOD_ID) }}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                      <a class="" href="{{ route('servicio.edit',$serv) }}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
                       </td>
                      
@@ -91,7 +96,7 @@
                    
                   </tbody>
                 </table>
-                {{$modulo->links('pagination::bootstrap-4')}}
+                {{$servicio->links('pagination::bootstrap-4')}}
               </div>
             </div>
           </div>
@@ -106,29 +111,38 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"> Agregar Módulo</h5>
+        <h5 class="modal-title" id="exampleModalLabel"> Agregar Servicio</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
        
-      <form action="{{route('modulo.store')}}" method="post">
+      <form action="{{route('servicio.store')}}" method="post">
     
 <div class="form-row">
       <div class="form-group col-md-6">
       <label class="control-label">Descripción </label>
-    <input class="form-control" type="text" placeholder="Ingrese descripcón módulo" name="descripcion" >
+    <input class="form-control" type="text" placeholder="Ingrese descripcón Servicio" name="servicio" >
       </div>
       <div class="form-group col-md-6">
       <label class="control-label">Identificador</label>
-    <input class="form-control" type="number" value="1"
-    
-    name="identificador"
-   min="1" >
+    <input class="form-control" type="text" placeholder="Ingrese Identificador Ticket" name="identificador"  >
       </div>
 </div>
-<input class="form-control" type="text"  name="idempresa" value="<?=session()->get('empresa');?>" hidden >
+
+<div class="form-row">
+      <div class="form-group col-md-6">
+      <label class="control-label">Hora Inicia </label>
+    <input class="form-control" type="time"  name="horainicia" value="08:00" >
+      </div>
+      <div class="form-group col-md-6">
+      <label class="control-label">Hora Finaliza</label>
+    <input class="form-control" type="time" value="14:00" name="horafin">
+      </div>
+</div>
+
+
 <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Cerrar</button>
         <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
