@@ -77,7 +77,7 @@
                       @foreach($modulo as $mod)
                     <tr>
                       <td>{{$mod->MOD_ID}}</td>
-                      <td>{{$mod->MOD_DESCRIPCION}}</td>
+                      <td>{{$mod->MOD_DESCRIPCION}}  <span class="badge badge-danger">Inactivo</span></td>
                       <td>{{$mod->MOD_NUMERO}}</td>
                       <td>
                       <a class="" href="{{ route('modulo.edit',$mod->MOD_ID) }}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>

@@ -7,7 +7,7 @@
       <p>sistema de Turnos Versión 2.0</p>
     </div>
       <ul class="app-breadcrumb breadcrumb">
-          <li class="breadcrumb-item"><i class="fa fa-home fa-lg">Lista Servicios Inactivos</i></li>
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg">Lista Usuarios Inactivos</i></li>
           <li class="breadcrumb-item"><a href="#">Principal</a></li>
       </ul>
 </div>
@@ -52,13 +52,14 @@
           </div>
     
 @endif
-              <h2>Lista Servicios Inactivos </h2>
+              <h2>Lista Usuarios Inactivos </h2>
           
-         
               <button type="button" class="btn btn-outline-info" >
-<a href="{{url('/servicio/')}}"><i class="fa fa-check-square-o" aria-hidden="true"></i> Lista</a>
+<a href="{{url('/persona/')}}"><i class="fa fa-check-square-o" aria-hidden="true"></i> Lista</a>
 </button>
-
+<button type="button" class="btn btn-default" >
+<a href=""><i class="fa fa-recycle" aria-hidden="true" title="Inactivos"></i></a>
+</button>
 
           <br> <br>
 
@@ -68,25 +69,30 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>DESCRIPCIÓN</th>
-                      <th>IDENTIFICADOR SERVICIO</th>
-                      <th>HORA INICIO</th>
-                      <th>HORA FINALIZA</th>
+                      <th>NOMBRE</th>
+                      <th>IDENTIFICACIÓN</th>
+                      <th>GÉNERO</th>
+                      <th>EMAIL</th>
+                      <th>USUARIO</th>
+                      <th>ROL</th>
+                      
                    
                       <th></th>
                      
                     </tr>
                   </thead>
                   <tbody>
-                      @foreach($servicio as $serv)
+                      @foreach($persona as $per)
                     <tr>
-                      <td>{{$serv->SER_ID}}</td>
-                      <td>{{$serv->SER_DESCRIPCION}}  <span class="badge badge-danger">Inactivo</span></td>
-                      <td>{{$serv->SER_IDENTIFICADOR}}</td>
-                      <td>{{$serv->SER_HORAA}}</td>
-                      <td>{{$serv->SER_HORAF}}</td>
+                      <td>{{$per->PER_ID}}</td>
+                      <td>{{$per->PER_NOMBRES}} {{$per->PER_APELLIDOS}}</td>
+                      <td>{{$per->PER_CEDULA}}</td>
+                      <td>{{$per->GEN_ID}}</td>
+                      <td>{{$per->PER_EMAIL}}</td>
+                      <td>{{$per->PER_USUARIO}} <span class="badge badge-danger">Inactivo</span></td>
+                      <td>{{$per->PER_ROL}}</td>
                       <td>
-                      <a class="" href="{{ route('servicio.edit',$serv) }}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                      <a class="" href="{{ route('persona.edit',$per->PER_ID) }}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
                       </td>
                      
@@ -95,14 +101,11 @@
                    
                   </tbody>
                 </table>
-                {{$servicio->links('pagination::bootstrap-4')}}
+                {{$persona->links('pagination::bootstrap-4')}}
               </div>
             </div>
           </div>
         </div>
       </div>
-
-
-  
 
 @endsection

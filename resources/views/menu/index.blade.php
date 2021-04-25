@@ -25,8 +25,11 @@ if(!$sesion){
     <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-     <!--datables estilo bootstrap 4 CSS-->  
+   
 
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('js/popper.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
@@ -109,7 +112,7 @@ if(!$sesion){
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Seguridad</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Usuarios</a></li>
+            <li><a class="treeview-item" href="{{url('/persona/')}}"><i class="icon fa fa-circle-o"></i> Usuarios</a></li>
            
           </ul>
         </li>
@@ -129,9 +132,7 @@ if(!$sesion){
     @yield('content')
     </main>
     <!-- Essential javascripts for application to work-->
-    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{asset('js/popper.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    
     <script src="{{asset('js/main.js')}}"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{{asset('js/plugins/pace.min.js')}}"></script>
@@ -142,7 +143,6 @@ if(!$sesion){
 
     <script type="text/javascript" src="{{asset('js/plugins/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/plugins/dataTables.bootstrap.min.js')}}"></script>
-
   
 
       

@@ -28,9 +28,10 @@ class ServiciosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-     {
-        
-    }
+     { 
+         
+        return view('servicio.datos');
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -66,7 +67,7 @@ class ServiciosController extends Controller
     
     public function show( )
     {
-       
+      
     }
 
     

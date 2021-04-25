@@ -94,6 +94,7 @@
                   </label>
                 </div>
 </div>
+</div>
 <input class="form-control" type="text"  name="idempresa" value="<?=session()->get('empresa');?>" hidden >
 <input type="text" name="id" id="" value="{{$servicio->SER_ID}}" hidden>
 

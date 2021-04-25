@@ -69,3 +69,5 @@ Route::get('moduloInac', 'ModulosController@inactivo')
          ->name('moduloInac.inactivo');
 Route::get('servicioInac', 'ServiciosController@inactivo')
          ->name('servicioInac.inactivo');
+Route::get('personaInac', 'PersonasController@inactivo')
+         ->name('personaInac.inactivo');

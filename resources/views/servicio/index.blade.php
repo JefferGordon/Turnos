@@ -82,7 +82,7 @@
                       @foreach($servicio as $serv)
                     <tr>
                       <td>{{$serv->SER_ID}}</td>
-                      <td>{{$serv->SER_DESCRIPCION}}</td>
+                      <td>{{$serv->SER_DESCRIPCION}}  <span class="badge badge-success">Activo</span></td>
                       <td>{{$serv->SER_IDENTIFICADOR}}</td>
                       <td>{{$serv->SER_HORAA}}</td>
                       <td>{{$serv->SER_HORAF}}</td>
@@ -123,22 +123,22 @@
 <div class="form-row">
       <div class="form-group col-md-6">
       <label class="control-label">Descripción </label>
-    <input class="form-control" type="text" placeholder="Ingrese descripcón Servicio" name="servicio" >
+    <input class="form-control" type="text" placeholder="Ingrese descripcón Servicio" name="servicio"  value="{{old('servicio')}}">
       </div>
       <div class="form-group col-md-6">
       <label class="control-label">Identificador</label>
-    <input class="form-control" type="text" placeholder="Ingrese Identificador Ticket" name="identificador"  >
+    <input class="form-control" type="text" placeholder="Ingrese Identificador Ticket" name="identificador" value="{{old('identificador')}}" >
       </div>
 </div>
 
 <div class="form-row">
       <div class="form-group col-md-6">
       <label class="control-label">Hora Inicia </label>
-    <input class="form-control" type="time"  name="horainicia" value="08:00" >
+    <input class="form-control" type="time"  name="horainicia" min="08:00" value="{{old('horainicia')}}" >
       </div>
       <div class="form-group col-md-6">
       <label class="control-label">Hora Finaliza</label>
-    <input class="form-control" type="time" value="14:00" name="horafin">
+    <input class="form-control" type="time" max="22:00" name="horafin" value="{{old('horafin')}}">
       </div>
 </div>
 

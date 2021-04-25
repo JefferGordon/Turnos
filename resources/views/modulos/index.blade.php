@@ -79,7 +79,7 @@
                       @foreach($modulo as $mod)
                     <tr>
                       <td>{{$mod->MOD_ID}}</td>
-                      <td>{{$mod->MOD_DESCRIPCION}}</td>
+                      <td>{{$mod->MOD_DESCRIPCION}} <span class="badge badge-success">Activo</span>  </td>
                       <td>{{$mod->MOD_NUMERO}}</td>
                       <td>
                       <a class="" href="{{ route('modulo.edit',$mod->MOD_ID) }}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -118,14 +118,15 @@
 <div class="form-row">
       <div class="form-group col-md-6">
       <label class="control-label">Descripción </label>
-    <input class="form-control" type="text" placeholder="Ingrese descripcón módulo" name="descripcion" >
+    <input class="form-control" type="text" placeholder="Ingrese descripcón módulo"  name="descripcion" value="{{old('descripcion')}}" >
       </div>
       <div class="form-group col-md-6">
       <label class="control-label">Identificador</label>
     <input class="form-control" type="number" value="1"
-    
+
     name="identificador"
-   min="1" >
+   min="1"
+   value="{{old('identificador')}}" >
       </div>
 </div>
 <input class="form-control" type="text"  name="idempresa" value="<?=session()->get('empresa');?>" hidden >
